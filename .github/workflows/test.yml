@@ -43,7 +43,7 @@ jobs:
 
       - name: Parse and Check Coverage
         run: |
-          genhtml -o coverage lcov.info
+          # genhtml -o coverage lcov.info
           coverage=$(lcov --summary lcov.info | grep "lines\.*:" | awk '{print $2}' | sed 's/%//')
           echo "Coverage is $coverage%"
           if (( $(echo "$coverage < 80.0" | bc -l) )); then
