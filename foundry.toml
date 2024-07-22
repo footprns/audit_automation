@@ -2,5 +2,6 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+fuzz_runs = 1000  # Set the number of fuzz test iterations
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
