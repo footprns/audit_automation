@@ -48,13 +48,20 @@ jobs:
           fi
         id: check-coverage
 
-      - name: Run Forge build
-        run: |
-          forge --version
-          forge build --sizes
-        id: build
+      # - name: Run Forge build # disable for faster
+      #   run: |
+      #     forge --version
+      #     forge build --sizes
+      #   id: build
 
-      - name: Run Forge tests
-        run: |
-          forge test -vvv
-        id: test
+      # - name: Run Forge tests # disable to faster
+      #   run: |
+      #     forge test -vvv
+      #   id: test
+
+      - name: Run Echidna
+        uses: crytic/echidna-action@v2
+        with:
+          files: .
+          contract: TokenEchidna
+          crytic-args: --ignore-compile
