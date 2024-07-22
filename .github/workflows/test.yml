@@ -64,4 +64,4 @@ jobs:
         with:
           files: .
           contract: TokenEchidna
-          crytic-args: --ignore-compile
+          # crytic-args: --ignore-compile
