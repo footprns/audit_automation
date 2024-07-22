@@ -22,6 +22,10 @@ jobs:
         with:
           version: nightly
 
+      - name: Install Forge Coverage
+        run: |
+          cargo install forge-coverage
+
       - name: Run Forge build
         run: |
           forge --version
