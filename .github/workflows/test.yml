@@ -34,12 +34,23 @@ jobs:
       # - name: Install Dependencies
       #   run: |
       #     sudo apt-get update
-      #     sudo apt-get install lcov
+      #     sudo apt-get install lcov genhtml
 
       - name: Run Forge tests with coverage
         run: |
-          forge coverage --report lcov
+          forge coverage --report coverage/lcov
         id: coverage
+        
+      - name: Parse and Check Coverage
+        run: |
+          genhtml -o coverage coverage/lcov.info
+          coverage=$(lcov --summary coverage/lcov.info | grep lines | awk '{print $4}' | sed 's/%//')
+          echo "Coverage is $coverage%"
+          if (( $(echo "$coverage < 80.0" | bc -l) )); then
+            echo "Test coverage is below 80%"
+            exit 1
+          fi
+        id: check-coverage
 
       - name: Run Forge build
         run: |
