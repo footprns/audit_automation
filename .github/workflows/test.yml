@@ -26,10 +26,10 @@ jobs:
         with:
           submodules: recursive
 
-      # - name: Install Foundry # disable to speed up
-      #   uses: foundry-rs/foundry-toolchain@v1
-      #   with:
-      #     version: nightly
+      - name: Install Foundry # disable to speed up
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
 
       # - name: Install Dependencies
       #   run: |
@@ -48,11 +48,11 @@ jobs:
           fi
         id: check-coverage
 
-      # - name: Run Forge build # disable for faster
-      #   run: |
-      #     forge --version
-      #     forge build --sizes
-      #   id: build
+      - name: Run Forge build # disable for faster
+        run: |
+          forge --version
+          forge build --sizes
+        id: build
 
       # - name: Run Forge tests # disable to faster
       #   run: |
