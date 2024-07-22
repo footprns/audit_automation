@@ -30,6 +30,6 @@ jobs:
     - name: Run Echidna
       uses: crytic/echidna-action@v2
       with:
-        files: .
-        contract: TokenEchidna
+        files: src/Counter.sol
+        contract: Counter
         crytic-args: --ignore-compile
