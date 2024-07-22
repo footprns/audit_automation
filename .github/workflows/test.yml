@@ -44,7 +44,7 @@ jobs:
       - name: Parse and Check Coverage
         run: |
           genhtml -o coverage lcov.info
-          coverage=$(lcov --summary lcov.info | grep lines | awk '{print $4}' | sed 's/%//')
+          coverage=$(lcov --summary lcov.info | grep "lines\.*:" | awk '{print $2}' | sed 's/%//')
           echo "Coverage is $coverage%"
           if (( $(echo "$coverage < 80.0" | bc -l) )); then
             echo "Test coverage is below 80%"
