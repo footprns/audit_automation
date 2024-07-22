@@ -31,9 +31,15 @@ jobs:
         with:
           version: nightly
 
-      - name: Install Forge Coverage
+      # - name: Install Dependencies
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install lcov
+
+      - name: Run Forge tests with coverage
         run: |
-          cargo install forge-coverage
+          forge coverage --report lcov
+        id: test
 
       - name: Run Forge build
         run: |
