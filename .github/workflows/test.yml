@@ -38,9 +38,9 @@ jobs:
 
       - name: Run Forge tests with coverage
         run: |
-          forge coverage --report coverage/lcov
+          forge coverage --report lcov
         id: coverage
-        
+
       - name: Parse and Check Coverage
         run: |
           genhtml -o coverage coverage/lcov.info
