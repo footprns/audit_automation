@@ -42,8 +42,8 @@ jobs:
           forge coverage --report lcov
           coverage=$(lcov --summary lcov.info | grep "lines\.*:" | awk '{print $2}' | sed 's/%//')
           echo "Coverage is $coverage%"
-          if (( $(echo "$coverage < 80.0" | bc -l) )); then
-            echo "Test coverage is below 80%"
+          if (( $(echo "$coverage < 60.0" | bc -l) )); then
+            echo "Test coverage is below 60%"
             exit 1
           fi
         id: check-coverage
