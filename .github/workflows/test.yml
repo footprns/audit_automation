@@ -26,10 +26,10 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
-        with:
-          version: nightly
+      # - name: Install Foundry # disable to speed up
+      #   uses: foundry-rs/foundry-toolchain@v1
+      #   with:
+      #     version: nightly
 
       # - name: Install Dependencies
       #   run: |
@@ -43,7 +43,7 @@ jobs:
 
       - name: Parse and Check Coverage
         run: |
-          genhtml -o coverage coverage/lcov.info
+          genhtml -o coverage lcov.info
           coverage=$(lcov --summary coverage/lcov.info | grep lines | awk '{print $4}' | sed 's/%//')
           echo "Coverage is $coverage%"
           if (( $(echo "$coverage < 80.0" | bc -l) )); then
