@@ -36,14 +36,15 @@ jobs:
       #     sudo apt-get update
       #     sudo apt-get install lcov genhtml
 
-      - name: Run Forge tests with coverage
-        run: |
-          forge coverage --report lcov
-        id: coverage
+      # - name: Run Forge tests with coverage
+      #   run: |
+      #     forge coverage --report lcov
+      #   id: coverage
 
       - name: Parse and Check Coverage
         run: |
           # genhtml -o coverage lcov.info
+          forge coverage --report lcov
           coverage=$(lcov --summary lcov.info | grep "lines\.*:" | awk '{print $2}' | sed 's/%//')
           echo "Coverage is $coverage%"
           if (( $(echo "$coverage < 80.0" | bc -l) )); then
