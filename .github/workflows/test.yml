@@ -59,9 +59,16 @@ jobs:
       #     forge test -vvv
       #   id: test
 
-      - name: Run Echidna
-        uses: crytic/echidna-action@v2
-        with:
-          files: src/Counter.sol
-          contract: Counter
-          crytic-args: --ignore-compile
+      # - name: Run Echidna
+      #   uses: crytic/echidna-action@v2
+      #   with:
+      #     files: src/Counter.sol
+      #     contract: Counter
+      #     crytic-args: --ignore-compile
+
+      - name: Run Echidna # disable for faster
+        run: |
+          echidna test/EchidnaBalanceTest.sol --config test/echidna-config.yaml 
+        id: echidna
+
+
